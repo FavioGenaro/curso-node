@@ -1,0 +1,16 @@
+{
+  "name": "0-bases-node",
+  "version": "0.0.1",
+  "description": "Simple tabla de multiplicar con archivos de texto",
+  "main": "01-app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "base3": "node 02-fs --base=3"
+  },
+  "author": "Favio Saico",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "yargs": "^17.6.0"
+  }
+}

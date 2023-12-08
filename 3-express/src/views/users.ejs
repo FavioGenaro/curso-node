@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Document</title> 
+</head>
+<body>
+    <h1>Mostrando todos los usuarios</h1>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Nombre</td>
+            <td>Edad</td>
+            <td>Modificar</td>
+            <td>Eliminar</td>
+        </tr>
+        <!-- en estas plantillas podemos usar codigo JS -->
+        <!-- users es el arreglo de objetos que recibimos de render en users.js -->
+        <%users.forEach((user) =>{ %>
+            <tr>
+                <td> <%= user.id%> </td>
+                <!-- <td> <%= user.nombre%> </td> -->
+                <td> <%= user.name%> </td>
+                <!-- <td> <%= user.edad%> </td> -->
+                <td> <%= user.age%> </td>
+                
+                <!-- enviamos el parametro en la url, que es el id, hacemos una petición a esa url del tipo GET-->
+                <td><a id='btn-update' href="/users/update/<%= user.id%>">Modificar</a></td>
+                <!-- al dar clic al boton, hacemos una peticion del tipo GET -->
+                <td><a id='btn-delete' href="/users/delete/<%= user.id%>">Eliminar</a></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Actualizando usuario</h1>
+    <!-- action, url de donde vamos a enviar los datos, en este caso accedemos al id del usuario -->
+    <!-- method, POST porque vamos a insertar datos -->
+    <form action="/users/update/<%= user[0]['id'] %>" method="POST">
+
+        <label for="name">Nombre</label>
+        <!-- name, es con lo que identificamos al input en el servidor -->
+        <!-- en value  añadimos el valor user que es el pasamos del controlador-->
+        <input type="text" name="name" id="name" value="<%= user[0]['name'] %>"> 
+
+        <label for="age">Edad</label>
+        <!-- en value accedemos a user -->
+        <input type="text" name="age" id="age" value="<%= user[0]['age'] %>">
+
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+</html>

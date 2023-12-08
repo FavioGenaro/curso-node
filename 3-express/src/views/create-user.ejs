@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Creando usuario</h1>
+    <!-- action, url de donde vamos a enviar los datos -->
+    <!-- method, POST porque vamos a insertar datos -->
+    <form action="/users/create" method="POST">
+
+        <label for="name">Nombre</label>
+        <!-- name, es con lo que identificamos al input en el servidor -->
+        <input type="text" name="name" id="name">
+
+        <label for="age">Edad</label>
+        <input type="text" name="age" id="age">
+
+        <input type="submit" value="Registrar">
+    </form>
+
+</body>
+</html>

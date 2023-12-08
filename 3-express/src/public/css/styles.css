@@ -1,0 +1,32 @@
+/* body{
+    color: steelblue;
+} */
+
+table{
+    margin: 0 auto;
+}
+
+tr{
+    border-bottom: 1px solid black;
+}
+td{
+    border-bottom: 1px solid black;
+    padding: 1rem;
+    text-align: left;
+}
+
+#btn-update{
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+#btn-delete{
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+}

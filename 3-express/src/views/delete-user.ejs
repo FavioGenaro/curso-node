@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <h1>Eliminando usuario</h1>
+    <!-- action, url de donde vamos a enviar los datos, si damos clic nos redirige a la url y aplica la funcionalidad -->
+    <!-- method, POST porque vamos a insertar datos -->
+    <form action="/users/delete/<%= user[0]['id'] %>" method="POST">
+
+        <h2>¿Desea eliminar este usuario?</h2>
+        <a id='btn-update' href="/users/all">Cancelar</a>
+        <input id='btn-delete' type="submit" value="Eliminar">
+    </form>
+</body>
+</html>

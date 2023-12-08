@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <h1>Google Signin</h1>
+    <hr/>
+
+    <!-- script de google que nos da acceso a los demás datos para la autenticación con google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!--  data-callback: es la función que se ejecuta cuando se realizo una autenticación de forma exitosa
+        data-auto_prompt: en false para que no pida al usuario autenticarse ni bien entra a la pagina
+    -->
+    <div id="g_id_onload"
+        data-client_id="591876168636-taraab7fsp7shqu8ar3a09rphnh7kgeg.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse"
+        data-auto_prompt="false"
+        data-auto_select="true">
+    </div>
+
+    <div class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="sign_in_with"
+        data-shape="rectangular"
+        data-logo_alignment="left">
+    </div>
+
+    <button id="g_id_signout">Sign Out</button>
+
+    <script>
+        // Gracias a esta función podemos controlar el token
+        // la función decodeJwtResponse es una función que debemos definir, pero no la haremos por le momento
+        function handleCredentialResponse(response) {
+            // mostramos el token que nos retorna google
+            // console.log('id_token', response.credential)
+
+            const body = { id_token: response.credential } // almacenamos el token
+            fetch('http://localhost:8080/api/auth/google',{ // diparamos un petición tipo post a este enlace
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify( body ) // pasamos el token en el body
+            })
+                .then( resp => resp.json())
+                .then( resp =>{
+                    console.log(resp) // mostramos la respuesta de nuestro backend, esta definida en el controlador
+                    localStorage.setItem('email', resp.usuario.correo ) // guardamos el correo en el localStorage
+                })
+                .catch( console.warn ) // mostramos el error
+        }
+
+        const button = document.getElementById('g_id_signout');
+        button.onclick = async() => {
+
+            // console.log(google.accounts.id)//permite el acceso a diversa funciones
+            google.accounts.id.disableAutoSelect()
+            google.accounts.id.revoke(localStorage.getItem('email'), done => { // mandamos el correo del localStorage
+                // console.log('consent revoked');
+                localStorage.clear() // limpiamos el localStorage
+                location.reload() // recarga la pagina y vaciar cualquier cosa que tengamos en el esado de la palicación
+            });
+        }
+    </script>
+</body>
+</html>
